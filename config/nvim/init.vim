@@ -37,7 +37,10 @@ set ruler
 set ignorecase
 
 " add right margin on 80.
-set colorcolumn=80
+" set colorcolumn=80
+
+" add mapping to toggle right margin/
+nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
 
 "
 " editing.
@@ -69,7 +72,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
-
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
@@ -80,7 +83,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 set updatetime=300
 
 " show documentation on key.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -90,6 +92,35 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+" status function, includes diagnostic counts and status.
+function! CocStatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'ERR:' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'WARN:' . info['warning'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+
+" lightline
+
+let g:lightline = {
+  \   'colorscheme': 'tokyonight',
+  \   'active': {
+  \     'left': [
+  \       [ 'mode', 'paste' ],
+  \       [ 'cocstatus', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+  \   'component_function': {
+  \     'cocstatus': 'CocStatusDiagnostic',
+  \   },
+  \ }
 
 " NERDTree
 
@@ -146,7 +177,6 @@ call plug#end()
 " theme: tokyonight
 let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 1
-let g:lightline = {'colorscheme': 'tokyonight'}
 colorscheme tokyonight
 
 " right margin background;
