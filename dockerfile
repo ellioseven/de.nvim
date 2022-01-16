@@ -58,7 +58,7 @@ USER root
 ADD config/nvim /home/user/.config/nvim
 RUN chown -R user:user $HOME/.config
 USER user
-WORKDIR "$HOME/.config/nvim/autoload"
+WORKDIR "$HOME/.opt/plug.vim"
 RUN curl -fLO https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 WORKDIR "$HOME"
 RUN nvim --headless +PlugInstall +qall
