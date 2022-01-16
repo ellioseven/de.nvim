@@ -55,14 +55,22 @@ ENV PATH "$HOME/.nvm/versions/node/v$NODE_VER/bin:$PATH"
 
 # install: plug.vim
 USER root
-ADD init.vim /home/user/.config/nvim/init.vim
+ADD config/nvim /home/user/.config/nvim
 RUN chown -R user:user $HOME/.config
 USER user
-
 WORKDIR "$HOME/.config/nvim/autoload"
 RUN curl -fLO https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 WORKDIR "$HOME"
 RUN nvim --headless +PlugInstall +qall
 RUN mkdir -p $HOME/.config/coc
-RUN nvim --headless +CocInstall coc-json coc-tsserver +qall
+RUN mkdir -p "$HOME/.config/coc/extensions"
+WORKDIR "$HOME/.config/coc/extensions"
+RUN if [ ! -f package.json ] ; then echo '{"dependencies": {}}' > package.json ; fi && \
+  yarn add \
+    coc-eslint \
+    coc-prettier \
+    coc-tsserver \
+    coc-json \
+      --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
+ADD config/fish /home/user/.config/fish
