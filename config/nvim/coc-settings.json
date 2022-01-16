@@ -1,6 +1,5 @@
 {
   "list.source.symbols.excludes": [
     "**/node_modules/**"
-  ],
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true
+  ]
 }
