@@ -78,6 +78,29 @@ RUN if [ ! -f package.json ] ; then echo '{"dependencies": {}}' > package.json ;
     coc-tsserver \
     coc-json \
       --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+WORKDIR "$HOME"
 
+# configure: fish
 ADD config/fish /home/user/.config/fish
+
+# install: rust
+ENV PATH "$HOME/.cargo/bin:$PATH"
+USER root
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+USER user
+
+# install: rg
+USER root
+WORKDIR /opt
+RUN apt-get install -y build-essential --no-install-recommends && \
+  git clone https://github.com/BurntSushi/ripgrep && \
+  cd ripgrep && \
+  cargo build --release && \
+  mv target/release/rg /bin && \
+  cd / && \
+  rm -rf /opt/ripgrep && \
+  apt-get remove -y build-essential && \
+  apt-get autoremove -y
+USER user
+WORKDIR "$HOME"
 

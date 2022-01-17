@@ -114,6 +114,12 @@ nnoremap <silent><nowait> <leader>dd  :<C-u>CocFzfList diagnostics<cr>
 nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
 
+" search/replace
+" @url https://www.reddit.com/r/vim/comments/n8x2xr/til_find_and_replace_multiple_files_with_and/
+" @url https://thoughtbot.com/blog/lists-vim-and-you
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!{.git/*,*.lock,node_modules/*}" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
+
+
 " lightline
 
 let g:lightline = {
