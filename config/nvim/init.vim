@@ -73,9 +73,9 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
 
 " highlight the symbol and its references when holding the cursor.
 " @url https://stackoverflow.com/questions/41416072/change-the-hold-time-of-the-cursor
@@ -118,8 +118,8 @@ let g:lightline = {
   \     ]
   \   },
   \   'component_function': {
-  \     'cocstatus': 'CocStatusDiagnostic',
-  \   },
+  \     'cocstatus': 'CocStatusDiagnostic'
+  \   }
   \ }
 
 " NERDTree

@@ -1,5 +1,6 @@
 {
+  "eslint.autoFixOnSave": true,
   "list.source.symbols.excludes": [
-    "**/node_modules/**"
+    "**/node_modules/**/*"
   ]
 }
