@@ -53,6 +53,12 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
   npm install --global yarn
 ENV PATH "$HOME/.nvm/versions/node/v$NODE_VER/bin:$PATH"
 
+# install: nvim runtime
+USER root
+RUN apt-get install -y python3-pip --no-install-recommends && \
+  pip3 install pynvim
+USER user
+
 # install: plug.vim
 USER root
 ADD config/nvim /home/user/.config/nvim
@@ -74,3 +80,4 @@ RUN if [ ! -f package.json ] ; then echo '{"dependencies": {}}' > package.json ;
       --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
 ADD config/fish /home/user/.config/fish
+

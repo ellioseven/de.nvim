@@ -73,9 +73,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
 
 " highlight the symbol and its references when holding the cursor.
 " @url https://stackoverflow.com/questions/41416072/change-the-hold-time-of-the-cursor
@@ -106,6 +103,16 @@ function! CocStatusDiagnostic() abort
   endif
   return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
 endfunction
+
+" coc-fzf
+
+" use FZF fullscreen mode in coc-references.
+let g:coc_fzf_preview_fullscreen = 1
+
+nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList diagnostics --current-buf<cr>
+nnoremap <silent><nowait> <leader>dd  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
 
 " lightline
 
@@ -166,6 +173,9 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " plugin: fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" plugin: coc-fzf
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 " initialise plugins.
 call plug#end()
