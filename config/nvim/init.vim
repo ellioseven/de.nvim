@@ -167,9 +167,6 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " plugin: vim-lightline
 Plug 'itchyny/lightline.vim'
 
-" plugin: git-blam.vim
-Plug 'f-person/git-blame.nvim'
-
 " plugin: coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
