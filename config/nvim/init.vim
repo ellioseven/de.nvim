@@ -138,7 +138,7 @@ let g:lightline = {
 " NERDTree
 
 " toggle NERDTree panel.
-map <f8> :NERDTreeToggle<cr>
+map <Tab> :NERDTreeToggle<cr>
 
 " remove components from UI.
 let NERDTreeMinimalUI=1
