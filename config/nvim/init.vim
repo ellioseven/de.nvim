@@ -30,6 +30,12 @@ set smarttab
 " clear search.
 noremap <silent> <C-L> :let @/ = ""<CR>
 
+" read detected changes outside vim.
+set autoread
+
+" set command history.
+set history=1000
+
 "
 " interface.
 "
@@ -103,35 +109,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" status function, includes diagnostic counts and status.
-function! CocStatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'ERR:' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'WARN:' . info['warning'])
-  endif
-  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
-endfunction
-
-" lightline
-
-let g:lightline = {
-  \   'colorscheme': 'tokyonight',
-  \   'active': {
-  \     'left': [
-  \       [ 'mode', 'paste' ],
-  \       [ 'cocstatus', 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-  \   'component_function': {
-  \     'cocstatus': 'CocStatusDiagnostic'
-  \   }
-  \ }
-
 "
 " vim-plug
 "
@@ -141,9 +118,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " plugin: plenary.nvim
 Plug 'nvim-lua/plenary.nvim'
-
-" plugin: vim-lightline
-Plug 'itchyny/lightline.vim'
 
 " plugin: coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -168,6 +142,9 @@ Plug 'fannheyward/telescope-coc.nvim'
 
 " plugin: telescope-fzf.nvim
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+" plugin: lualine.nvim
+Plug 'nvim-lualine/lualine.nvim'
 
 " initialise plugins.
 call plug#end()
@@ -278,3 +255,34 @@ nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
 nnoremap <silent><nowait> <leader>dd  :<C-u>Telescope coc workspace_diagnostics<cr>
 nnoremap <silent><nowait> <leader>r  :<C-u>Telescope coc references<cr>
 
+" lualine.vim
+
+lua << EOF
+require('lualine').setup({
+  options = {
+    icons_enabled = false,
+    theme = 'tokyonight',
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {},
+    lualine_c = {
+      'branch',
+      {
+          'diagnostics',
+          symbols = {
+            error = 'ERR:',
+            warn = 'WRN:',
+            info = 'INF:'
+          }
+      },
+      'filename',
+    },
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  }
+})
+EOF
