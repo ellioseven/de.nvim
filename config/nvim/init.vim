@@ -133,9 +133,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 " plugin: plenary.nvim
 Plug 'nvim-lua/plenary.nvim'
 
-" plugin: editorconfig.
-Plug 'editorconfig/editorconfig-vim'
-
 " plugin: vim-sensible
 Plug 'tpope/vim-sensible'
 
