@@ -171,6 +171,9 @@ Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 " plugin: nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 
+" plugin: lightspeed
+Plug 'ggandor/lightspeed.nvim'
+
 " initialise plugins.
 call plug#end()
 
