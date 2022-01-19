@@ -21,6 +21,15 @@ highlight VertSplit cterm=NONE
 " always show 10 lines on scroll.
 :set scrolloff=10
 
+" tab defaults.
+set autoindent
+set backspace=indent,eol,start
+set complete-=i
+set smarttab
+
+" clear search.
+noremap <silent> <C-L> :let @/ = ""<CR>
+
 "
 " interface.
 "
@@ -132,9 +141,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " plugin: plenary.nvim
 Plug 'nvim-lua/plenary.nvim'
-
-" plugin: vim-sensible
-Plug 'tpope/vim-sensible'
 
 " plugin: vim-lightline
 Plug 'itchyny/lightline.vim'
