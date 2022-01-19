@@ -108,22 +108,6 @@ function! CocStatusDiagnostic() abort
   return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
 endfunction
 
-" coc-fzf
-
-" use FZF fullscreen mode in coc-references.
-let g:coc_fzf_preview_fullscreen = 1
-
-nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList diagnostics --current-buf<cr>
-nnoremap <silent><nowait> <leader>dd  :<C-u>CocFzfList diagnostics<cr>
-nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
-nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
-
-" search/replace
-" @url https://www.reddit.com/r/vim/comments/n8x2xr/til_find_and_replace_multiple_files_with_and/
-" @url https://thoughtbot.com/blog/lists-vim-and-you
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!{.git/*,*.lock,node_modules/*}" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
-
-
 " lightline
 
 let g:lightline = {
@@ -164,13 +148,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " plugin: tokyonight
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
-" plugin: fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" plugin: coc-fzf
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
-
 " plugin: nvim-tree.lua
 Plug 'kyazdani42/nvim-tree.lua'
 
@@ -179,6 +156,15 @@ Plug 'ggandor/lightspeed.nvim'
 
 " plugin gitsigns.vim
 Plug 'lewis6991/gitsigns.nvim'
+
+" plugin telescope.nvim
+Plug 'nvim-telescope/telescope.nvim'
+
+" plugin: telescope-coc.nvim
+Plug 'fannheyward/telescope-coc.nvim'
+
+" plugin: telescope-fzf.nvim
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " initialise plugins.
 call plug#end()
@@ -191,6 +177,10 @@ call plug#end()
 let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 1
 let g:tokyonight_transparent_sidebar = 1
+let g:tokyonight_colors = {
+  \   'bg_float': '#1a1b26',
+  \ }
+
 colorscheme tokyonight
 
 " right margin background;
@@ -199,7 +189,6 @@ highlight ColorColumn ctermbg=0 guibg=#db4b4b
 " nvim-tree
 
 nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
 
 " disable style for executables.
 " @url https://github.com/kyazdani42/nvim-tree.lua/issues/273
@@ -248,4 +237,41 @@ require'gitsigns'.setup {
   current_line_blame = true
 }
 EOF
+
+" telescope.nvim
+
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+let g:tokyonight_dark_float = 1
+
+lua << EOF
+require('telescope').setup({
+  defaults = {
+    theme = "tokyonight",
+    layout_config = {
+      vertical = { width = 1 },
+      preview_width = 80
+    },
+  },
+})
+EOF
+
+" telescope-fzf.nvim
+
+lua << EOF
+require('telescope').load_extension('fzf')
+EOF
+
+" telescope-coc.nvim
+
+lua << EOF
+require('telescope').load_extension('coc')
+EOF
+
+nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
+nnoremap <silent><nowait> <leader>dd  :<C-u>Telescope coc workspace_diagnostics<cr>
+nnoremap <silent><nowait> <leader>r  :<C-u>Telescope coc references<cr>
 

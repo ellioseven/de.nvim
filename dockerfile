@@ -26,7 +26,6 @@ RUN apt-get update && apt-get install -y \
   cd / && \
   rm -rf /srv/neovim && \
   apt-get remove -y \
-    build-essential \
     cmake \
     pkg-config \
     automake \
@@ -92,15 +91,12 @@ USER user
 # install: rg
 USER root
 WORKDIR /opt
-RUN apt-get install -y build-essential --no-install-recommends && \
-  git clone https://github.com/BurntSushi/ripgrep && \
+RUN git clone https://github.com/BurntSushi/ripgrep && \
   cd ripgrep && \
   cargo build --release && \
   mv target/release/rg /bin && \
   cd / && \
-  rm -rf /opt/ripgrep && \
-  apt-get remove -y build-essential && \
-  apt-get autoremove -y
+  rm -rf /opt/ripgrep
 USER user
 WORKDIR "$HOME"
 
