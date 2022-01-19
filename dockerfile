@@ -52,11 +52,8 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
   npm install --global yarn
 ENV PATH "$HOME/.nvm/versions/node/v$NODE_VER/bin:$PATH"
 
-# install: nvim runtime
-USER root
-RUN apt-get install -y python3-pip --no-install-recommends && \
-  pip3 install pynvim
-USER user
+RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+  $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # install: plug.vim
 USER root
