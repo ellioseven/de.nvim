@@ -2,6 +2,10 @@
 " .vimrc
 "
 
+" use configured colours instead of cterm.
+" @url https://www.reddit.com/r/neovim/comments/dfe7gq/why_does_termguicolors_change_the_way_things_are/
+set termguicolors
+
 " enable syntax processig.
 syntax enable
 
@@ -135,18 +139,6 @@ let g:lightline = {
   \   }
   \ }
 
-" NERDTree
-
-" toggle NERDTree panel.
-map <Tab> :NERDTreeToggle<cr>
-
-" remove components from UI.
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
-
-" show hidden files.
-let NERDTreeShowHidden=1
-
 "
 " vim-plug
 "
@@ -159,10 +151,6 @@ Plug 'editorconfig/editorconfig-vim'
 
 " plugin: vim-sensible
 Plug 'tpope/vim-sensible'
-
-" plugin: nerdtree
-" activate on toggle.
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " plugin: vim-lightline
 Plug 'itchyny/lightline.vim'
@@ -180,6 +168,9 @@ Plug 'junegunn/fzf.vim'
 " plugin: coc-fzf
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
+" plugin: nvim-tree
+Plug 'kyazdani42/nvim-tree.lua'
+
 " initialise plugins.
 call plug#end()
 
@@ -190,8 +181,54 @@ call plug#end()
 " theme: tokyonight
 let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 1
+let g:tokyonight_transparent_sidebar = 1
 colorscheme tokyonight
 
 " right margin background;
 highlight ColorColumn ctermbg=0 guibg=#db4b4b
+
+" nvim-tree
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+
+" disable style for executables.
+" @url https://github.com/kyazdani42/nvim-tree.lua/issues/273
+hi! def NvimTreeExecFile guifg=none guibg=none gui=NONE
+
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 1,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+let g:nvim_tree_icons = {
+    \ 'git': {
+    \   'unstaged': '∘',
+    \   'staged': '•',
+    \   'renamed': '•',
+    \   'untracked': '∘',
+    \   'deleted': "•",
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "▿",
+    \   'arrow_closed': "▹",
+    \   'default': "▹",
+    \   'open': "▿",
+    \   'empty': "▫",
+    \   'empty_open': "▿",
+    \   'symlink': "▫",
+    \   'symlink_open': "▿",
+    \   }
+    \ }
+
+lua << EOF
+require'nvim-tree'.setup {
+  view = {
+    width = 40,
+    hide_root_folder = true
+  }
+}
+EOF
 
