@@ -146,6 +146,9 @@ let g:lightline = {
 " configure plugins.
 call plug#begin('~/.local/share/nvim/plugged')
 
+" plugin: plenary.nvim
+Plug 'nvim-lua/plenary.nvim'
+
 " plugin: editorconfig.
 Plug 'editorconfig/editorconfig-vim'
 
@@ -168,11 +171,14 @@ Plug 'junegunn/fzf.vim'
 " plugin: coc-fzf
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
-" plugin: nvim-tree
+" plugin: nvim-tree.lua
 Plug 'kyazdani42/nvim-tree.lua'
 
-" plugin: lightspeed
+" plugin: lightspeed.vim
 Plug 'ggandor/lightspeed.nvim'
+
+" plugin gitsigns.vim
+Plug 'lewis6991/gitsigns.nvim'
 
 " initialise plugins.
 call plug#end()
@@ -230,8 +236,16 @@ lua << EOF
 require'nvim-tree'.setup {
   view = {
     width = 40,
-    hide_root_folder = true
+    hide_root_folder = true,
   }
+}
+EOF
+
+" gitsigns.nvim
+
+lua << EOF
+require'gitsigns'.setup {
+  current_line_blame = true
 }
 EOF
 
