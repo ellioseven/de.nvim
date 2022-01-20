@@ -142,31 +142,12 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " initialise plugins.
 call plug#end()
 
-"
-" theming
-"
-
-" theme: tokyonight
-let g:tokyonight_style = "night"
-let g:tokyonight_italic_functions = 1
-let g:tokyonight_transparent_sidebar = 1
-let g:tokyonight_colors = {
-  \   'bg_float': '#1a1b26',
-  \ }
-
-colorscheme tokyonight
-
-" right margin background;
-highlight ColorColumn ctermbg=0 guibg=#db4b4b
-
 " telescope.nvim
 
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-let g:tokyonight_dark_float = 1
 
 lua << EOF
 require('telescope').setup({

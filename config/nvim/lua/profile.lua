@@ -10,6 +10,22 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- theme: tokyonight.nvim
+
+g.tokyonight_style = 'night'
+g.tokyonight_italic_functions = 1
+g.tokyonight_dark_float = 1
+g.tokyonight_transparent_sidebar = 1
+g.tokyonight_colors = {
+  bg_float = '#1a1b26'
+}
+
+-- enable theme.
+cmd[[colorscheme tokyonight]]
+
+-- right margin background.
+cmd "highlight ColorColumn ctermbg=0 guibg=#db4b4b"
+
 -- plugin: lualine.nvim
 
 require('lualine').setup({
@@ -91,7 +107,7 @@ map('n', '<c-n>', ':NvimTreeToggle<CR>')
 
 -- disable style for executables.
 -- @url https://github.com/kyazdani42/nvim-tree.lua/issues/273
-vim.cmd "hi! def NvimTreeExecFile guifg=none guibg=none gui=NONE"
+cmd "hi! def NvimTreeExecFile guifg=none guibg=none gui=NONE"
 
 require('nvim-tree').setup({
   view = {
