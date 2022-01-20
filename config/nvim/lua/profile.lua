@@ -10,6 +10,8 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+cmd "set updatetime=300"
+
 -- theme: tokyonight.nvim
 
 g.tokyonight_style = 'night'
@@ -121,6 +123,23 @@ require('nvim-tree').setup({
 require('gitsigns').setup({
   current_line_blame = true
 })
+
+-- plugin: coc.nvim
+
+map('n', '<leader>[g', '<Plug>(coc-diagnostic-prev)')
+map('n', '<leader>]g', '<Plug>(coc-diagnostic-next)')
+map('n', '<leader>gd', '<Plug>coc-definition')
+map('n', '<leader>gy', '<Plug>(coc-type-definition)')
+map('n', '<leader>gi', '<Plug>(coc-implementation)')
+map('n', '<leader>rn', '<Plug>(coc-rename)')
+map('n', '<leader>a', '<Plug>(coc-codeaction-selected)')
+map('n', '<leader>ac', '<Plug>(coc-codeaction)')
+map('n', '<leader>qf', '<Plug>(coc-fix-current)')
+map('n', 'K', ':call CocActionAsync("doHover")<CR>', { silent = true, noremap = true })
+
+-- highlight the symbol and its references when holding the cursor.
+-- @url https://stackoverflow.com/questions/41416072/change-the-hold-time-of-the-cursor
+cmd "autocmd CursorHold * silent call CocActionAsync('highlight')"
 
 -- plugin: telescope.nvim
 
