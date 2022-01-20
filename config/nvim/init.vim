@@ -1,6 +1,8 @@
-" 
+"
 " .vimrc
 "
+
+lua require("plugins")
 
 " use configured colours instead of cterm.
 " @url https://www.reddit.com/r/neovim/comments/dfe7gq/why_does_termguicolors_change_the_way_things_are/
@@ -11,7 +13,7 @@ syntax enable
 
 " remove vertical divider
 " @url https://stackoverflow.com/questions/26582597/why-my-vim-split-window-line-so-ugly
-set fillchars-=vert:\| | set fillchars+=vert:\ 
+set fillchars-=vert:\| | set fillchars+=vert:\
 highlight VertSplit cterm=NONE
 
 " fold all by default.
@@ -74,7 +76,7 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " CoC
 
-" 
+"
 set signcolumn=number
 
 " use <c-space> to trigger completion
@@ -112,8 +114,6 @@ endfunction
 "
 " vim-plug
 "
-
-lua require("plugins")
 
 " configure plugins.
 call plug#begin('~/.local/share/nvim/plugged')

@@ -1,7 +1,3 @@
-local cmd = vim.cmd
-local g = vim.g
-local opt = vim.opt
-
 vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function(use)
@@ -19,7 +15,6 @@ require('packer').startup(function(use)
   end
 )
 
-
 -- globals
 
 local function map(mode, lhs, rhs, opts)
@@ -34,12 +29,12 @@ require('lualine').setup({
   options = {
     icons_enabled = false,
     theme = 'tokyonight',
-    component_separators = { 
+    component_separators = {
       left = '',
       right = ''
     },
-    section_separators = { 
-      left = '', 
+    section_separators = {
+      left = '',
       right = ''
     },
   },
