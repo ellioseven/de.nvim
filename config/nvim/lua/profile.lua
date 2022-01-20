@@ -70,7 +70,7 @@ g.tokyonight_italic_functions = 1
 g.tokyonight_dark_float = 1
 g.tokyonight_transparent_sidebar = 1
 g.tokyonight_colors = {
-  bg_float = '#1a1b26'
+--  bg_float = '#1a1b26'
 }
 
 -- enable theme.
@@ -224,3 +224,16 @@ map('n', '<leader>r', ':<C-u>Telescope coc references<cr>')
 -- plugin: indent-blankline.nvim
 
 require('indent_blankline').setup()
+
+-- plugin: which-key.nvim
+
+local wk = require('which-key')
+
+wk.register({
+  ["<leader>"] = {
+    f = {
+      name = "file",
+      z = "Do something"
+    },
+  },
+})

@@ -15,6 +15,13 @@ return require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
 
   use {
+    'folke/which-key.nvim',
+    config = function()
+      require('which-key').setup()
+    end
+  }
+
+  use {
     'neoclide/coc.nvim',
     branch = 'release'
   }
