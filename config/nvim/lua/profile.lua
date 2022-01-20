@@ -12,6 +12,56 @@ end
 
 cmd "set updatetime=300"
 
+-- use configured colours instead of cterm.
+-- @url https://www.reddit.com/r/neovim/comments/dfe7gq/why_does_termguicolors_change_the_way_things_are/
+cmd "set termguicolors"
+
+-- enable syntax processing.
+cmd "syntax enable"
+
+-- fold all by default.
+-- @url https://stackoverflow.com/questions/2362914/fold-function-in-vim
+cmd "set foldmethod=syntax"
+
+-- always show 10 lines on scroll.
+cmd "set scrolloff=10"
+
+-- tab defaults.
+cmd "set autoindent"
+cmd "set backspace=indent,eol,start"
+cmd "set complete-=i"
+cmd "set smarttab"
+
+-- clear search.
+map('n', '<c-l>', ':let @/ = ""<CR>', { silent = true, noremap = true })
+
+-- read detected changes outside vim.
+cmd "set autoread"
+
+-- set command history.
+cmd "set history=1000"
+
+-- enable line numbers.
+cmd "set number"
+
+-- show last command.
+cmd "set showcmd"
+
+-- highlight current line.
+cmd "set cursorline"
+
+-- show current position.
+cmd "set ruler"
+
+-- ignore case when searching.
+cmd "set ignorecase"
+
+-- add mapping to toggle right margin.
+map('n', '<leader>c', ':execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>')
+
+-- 1 tab == 2 spaces.
+cmd "set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab"
+
 -- theme: tokyonight.nvim
 
 g.tokyonight_style = 'night'
