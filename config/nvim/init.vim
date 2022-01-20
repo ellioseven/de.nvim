@@ -3,6 +3,7 @@
 "
 
 lua require("plugins")
+lua require("start")
 
 " use configured colours instead of cterm.
 " @url https://www.reddit.com/r/neovim/comments/dfe7gq/why_does_termguicolors_change_the_way_things_are/
