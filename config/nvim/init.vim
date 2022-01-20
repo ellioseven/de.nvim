@@ -1,9 +1,11 @@
 "
 " .vimrc
 "
-
+" install with:
+" $ nvim -u ~/.config/nvim/lua/plugins.lua --headless \
+"   "-c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 lua require("plugins")
-lua require("start")
+lua require("profile")
 
 " use configured colours instead of cterm.
 " @url https://www.reddit.com/r/neovim/comments/dfe7gq/why_does_termguicolors_change_the_way_things_are/

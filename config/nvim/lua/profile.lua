@@ -1,5 +1,8 @@
-
 -- globals
+
+local cmd = vim.cmd
+local g = vim.g
+local opt = vim.opt
 
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
