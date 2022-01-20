@@ -5,7 +5,7 @@ local g = vim.g
 local opt = vim.opt
 
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
+  local options = { noremap = true }
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
@@ -121,4 +121,33 @@ require('nvim-tree').setup({
 require('gitsigns').setup({
   current_line_blame = true
 })
+
+-- plugin: telescope.nvim
+
+require('telescope').setup({
+  defaults = {
+    theme = "tokyonight",
+    layout_config = {
+      vertical = { width = 1 },
+      preview_width = 80
+    },
+  },
+})
+
+-- plugin: telescope-fzf.nvim
+
+require('telescope').load_extension('fzf')
+
+map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
+map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
+map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
+map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
+
+-- plugin: telescope-coc.nvim
+
+require('telescope').load_extension('coc')
+
+map('n', '<leader>d', ':<C-u>Telescope coc diagnostics<cr>')
+map('n', '<leader>dd', ':<C-u>Telescope coc workspace_diagnostics<cr>')
+map('n', '<leader>r', ':<C-u>Telescope coc references<cr>')
 

@@ -127,52 +127,5 @@ Plug 'nvim-lua/plenary.nvim'
 " plugin: coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" plugin: tokyonight
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-
-" plugin telescope.nvim
-Plug 'nvim-telescope/telescope.nvim'
-
-" plugin: telescope-coc.nvim
-Plug 'fannheyward/telescope-coc.nvim'
-
-" plugin: telescope-fzf.nvim
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
 " initialise plugins.
 call plug#end()
-
-" telescope.nvim
-
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-lua << EOF
-require('telescope').setup({
-  defaults = {
-    theme = "tokyonight",
-    layout_config = {
-      vertical = { width = 1 },
-      preview_width = 80
-    },
-  },
-})
-EOF
-
-" telescope-fzf.nvim
-
-lua << EOF
-require('telescope').load_extension('fzf')
-EOF
-
-" telescope-coc.nvim
-
-lua << EOF
-require('telescope').load_extension('coc')
-EOF
-
-nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
-nnoremap <silent><nowait> <leader>dd  :<C-u>Telescope coc workspace_diagnostics<cr>
-nnoremap <silent><nowait> <leader>r  :<C-u>Telescope coc references<cr>
