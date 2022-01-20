@@ -52,17 +52,17 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
   npm install --global yarn
 ENV PATH "$HOME/.nvm/versions/node/v$NODE_VER/bin:$PATH"
 
-# install: packer.vim, plug.vim
+WORKDIR "$HOME"
+
+# configure: nvim
 USER root
 ADD config/nvim /home/user/.config/nvim
 RUN chown -R user:user $HOME/.config
 USER user
-WORKDIR "$HOME/.opt/plug.vim"
-RUN curl -fLO https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# install: packer.nvim
 RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
   $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
-WORKDIR "$HOME"
-RUN nvim --headless +PlugInstall +qall
 RUN nvim -u ~/.config/nvim/lua/plugins.lua --headless \
   -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 RUN mkdir -p $HOME/.config/coc
@@ -78,7 +78,7 @@ RUN if [ ! -f package.json ] ; then echo '{"dependencies": {}}' > package.json ;
 WORKDIR "$HOME"
 
 # configure: fish
-ADD config/fish /home/user/.config/fish
+ADD config/fish "$HOME/.config/fish"
 
 # install: rust
 ENV PATH "$HOME/.cargo/bin:$PATH"
