@@ -52,21 +52,19 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
   npm install --global yarn
 ENV PATH "$HOME/.nvm/versions/node/v$NODE_VER/bin:$PATH"
 
-# install: nvim runtime
-USER root
-RUN apt-get install -y python3-pip --no-install-recommends && \
-  pip3 install pynvim
-USER user
-
-# install: plug.vim
+# install: packer.vim, plug.vim
 USER root
 ADD config/nvim /home/user/.config/nvim
 RUN chown -R user:user $HOME/.config
 USER user
 WORKDIR "$HOME/.opt/plug.vim"
 RUN curl -fLO https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+  $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
 WORKDIR "$HOME"
 RUN nvim --headless +PlugInstall +qall
+RUN nvim -u ~/.config/nvim/lua/plugins.lua --headless \
+  -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 RUN mkdir -p $HOME/.config/coc
 RUN mkdir -p "$HOME/.config/coc/extensions"
 WORKDIR "$HOME/.config/coc/extensions"

@@ -1,6 +1,11 @@
-" 
+"
 " .vimrc
 "
+" install with:
+" $ nvim -u ~/.config/nvim/lua/plugins.lua --headless \
+"   "-c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+lua require("plugins")
+lua require("profile")
 
 " use configured colours instead of cterm.
 " @url https://www.reddit.com/r/neovim/comments/dfe7gq/why_does_termguicolors_change_the_way_things_are/
@@ -11,7 +16,7 @@ syntax enable
 
 " remove vertical divider
 " @url https://stackoverflow.com/questions/26582597/why-my-vim-split-window-line-so-ugly
-set fillchars-=vert:\| | set fillchars+=vert:\ 
+set fillchars-=vert:\| | set fillchars+=vert:\
 highlight VertSplit cterm=NONE
 
 " fold all by default.
@@ -74,7 +79,7 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " CoC
 
-" 
+"
 set signcolumn=number
 
 " use <c-space> to trigger completion
@@ -125,15 +130,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " plugin: tokyonight
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
-" plugin: nvim-tree.lua
-Plug 'kyazdani42/nvim-tree.lua'
-
-" plugin: lightspeed.vim
-Plug 'ggandor/lightspeed.nvim'
-
-" plugin gitsigns.vim
-Plug 'lewis6991/gitsigns.nvim'
-
 " plugin telescope.nvim
 Plug 'nvim-telescope/telescope.nvim'
 
@@ -142,9 +138,6 @@ Plug 'fannheyward/telescope-coc.nvim'
 
 " plugin: telescope-fzf.nvim
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
-" plugin: lualine.nvim
-Plug 'nvim-lualine/lualine.nvim'
 
 " initialise plugins.
 call plug#end()
@@ -165,58 +158,6 @@ colorscheme tokyonight
 
 " right margin background;
 highlight ColorColumn ctermbg=0 guibg=#db4b4b
-
-" nvim-tree
-
-nnoremap <C-n> :NvimTreeToggle<CR>
-
-" disable style for executables.
-" @url https://github.com/kyazdani42/nvim-tree.lua/issues/273
-hi! def NvimTreeExecFile guifg=none guibg=none gui=NONE
-
-let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 0,
-    \ 'folder_arrows': 0,
-    \ }
-let g:nvim_tree_icons = {
-    \ 'git': {
-    \   'unstaged': '∘',
-    \   'staged': '•',
-    \   'renamed': '•',
-    \   'untracked': '∘',
-    \   'deleted': "•",
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "▿",
-    \   'arrow_closed': "▹",
-    \   'default': "▹",
-    \   'open': "▿",
-    \   'empty': "▫",
-    \   'empty_open': "▿",
-    \   'symlink': "▫",
-    \   'symlink_open': "▿",
-    \   }
-    \ }
-
-lua << EOF
-require'nvim-tree'.setup {
-  view = {
-    width = 40,
-    hide_root_folder = true,
-  }
-}
-EOF
-
-" gitsigns.nvim
-
-lua << EOF
-require'gitsigns'.setup {
-  current_line_blame = true
-}
-EOF
 
 " telescope.nvim
 
@@ -254,35 +195,3 @@ EOF
 nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
 nnoremap <silent><nowait> <leader>dd  :<C-u>Telescope coc workspace_diagnostics<cr>
 nnoremap <silent><nowait> <leader>r  :<C-u>Telescope coc references<cr>
-
-" lualine.vim
-
-lua << EOF
-require('lualine').setup({
-  options = {
-    icons_enabled = false,
-    theme = 'tokyonight',
-    component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {},
-    lualine_c = {
-      'branch',
-      {
-          'diagnostics',
-          symbols = {
-            error = 'ERR:',
-            warn = 'WRN:',
-            info = 'INF:'
-          }
-      },
-      'filename',
-    },
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  }
-})
-EOF

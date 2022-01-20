@@ -1,4 +1,7 @@
 srv/*
 !srv/.gitkeep
-config/fish/fish_variables
 .DS_Store
+.idea
+
+config/fish/fish_variables
+config/nvim/plugin/packer_compiled.lua
