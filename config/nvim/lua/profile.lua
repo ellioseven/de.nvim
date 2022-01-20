@@ -20,6 +20,7 @@ cmd "set termguicolors"
 cmd "syntax enable"
 
 -- fold all by default.
+-- @todo Seems to be broken on live_grep?
 -- @url https://stackoverflow.com/questions/2362914/fold-function-in-vim
 cmd "set foldmethod=syntax"
 
@@ -220,3 +221,6 @@ map('n', '<leader>d', ':<C-u>Telescope coc diagnostics<cr>')
 map('n', '<leader>dd', ':<C-u>Telescope coc workspace_diagnostics<cr>')
 map('n', '<leader>r', ':<C-u>Telescope coc references<cr>')
 
+-- plugin: indent-blankline.nvim
+
+require('indent_blankline').setup()
