@@ -77,7 +77,11 @@ cmd "set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab"
 -- theme: tokyonight.nvim
 
 g.tokyonight_style = 'night'
+g.tokyonight_hide_inactive_statusline = 1
+g.tokyonight_italic_comments = 0
+g.tokyonight_italic_keywords = 0
 g.tokyonight_italic_functions = 0
+g.tokyonight_italic_variables = 0
 g.tokyonight_dark_float = 1
 g.tokyonight_transparent_sidebar = 1
 g.tokyonight_colors = {
@@ -209,7 +213,6 @@ require('telescope').setup({
   defaults = {
     theme = "tokyonight",
     layout_config = {
-      vertical = { width = 1 },
       preview_width = 80
     },
   },
