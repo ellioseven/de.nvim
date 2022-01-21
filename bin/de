@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -u
+set -e
+
+docker-compose --project-directory=$HOME/.opt/de-web run \
+  --volume=$PWD:/srv \
+  --rm \
+    cli nvim

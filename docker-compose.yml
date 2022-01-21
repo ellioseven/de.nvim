@@ -5,6 +5,5 @@ services:
     user: user:user
     working_dir: /srv
     volumes:
-      - "./srv:/srv"
       - "./config/fish:/home/user/.config/fish"
       - "./config/nvim:/home/user/.config/nvim"
