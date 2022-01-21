@@ -54,6 +54,24 @@ ENV PATH "$HOME/.nvm/versions/node/v$NODE_VER/bin:$PATH"
 
 WORKDIR "$HOME"
 
+# install: rust
+ENV PATH "$HOME/.cargo/bin:$PATH"
+USER root
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+USER user
+
+# install: rg
+USER root
+WORKDIR /opt
+RUN git clone https://github.com/BurntSushi/ripgrep && \
+  cd ripgrep && \
+  cargo build --release && \
+  mv target/release/rg /bin && \
+  cd / && \
+  rm -rf /opt/ripgrep
+USER user
+WORKDIR "$HOME"
+
 # configure: nvim
 USER root
 ADD config/nvim /home/user/.config/nvim
@@ -79,22 +97,4 @@ WORKDIR "$HOME"
 
 # configure: fish
 ADD config/fish "$HOME/.config/fish"
-
-# install: rust
-ENV PATH "$HOME/.cargo/bin:$PATH"
-USER root
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-USER user
-
-# install: rg
-USER root
-WORKDIR /opt
-RUN git clone https://github.com/BurntSushi/ripgrep && \
-  cd ripgrep && \
-  cargo build --release && \
-  mv target/release/rg /bin && \
-  cd / && \
-  rm -rf /opt/ripgrep
-USER user
-WORKDIR "$HOME"
 
