@@ -220,11 +220,11 @@ require('telescope').setup({
 require('telescope').load_extension('fzf')
 
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
-map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
-map('n', '<leader>fwp', '<cmd>lua require("telescope.builtin").grep_string()<cr>')
-map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
+map('n', '<leader>fsf', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
+map('n', '<leader>fsb', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<cr>')
+map('n', '<leader>fwf', '<cmd>lua require("telescope.builtin").grep_string()<cr>')
 map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
-map('n', '<leader>fwb', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<cr>')
+map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 
 -- plugin: telescope-coc.nvim
 
