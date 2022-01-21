@@ -1,6 +1,6 @@
-# de
+# de.nvim
 
-Development environment.
+NeoVim development environment.
 
 ## Installation
 
