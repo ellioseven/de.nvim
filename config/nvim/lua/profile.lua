@@ -25,7 +25,7 @@ cmd "syntax enable"
 -- fold all by default.
 -- @todo Seems to be broken on live_grep?
 -- @url https://stackoverflow.com/questions/2362914/fold-function-in-vim
-cmd "set foldmethod=syntax"
+-- cmd "set foldmethod=syntax"
 
 -- always show 10 lines on scroll.
 cmd "set scrolloff=10"
@@ -189,6 +189,7 @@ vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true
 vim.api.nvim_set_keymap('n', '<leader>ca', '<Plug>(coc-codeaction-selected)', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ol', ':call CocActionAsync("showOutline")<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>do', ':call CocActionAsync("doHover")<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fo', ':call CocActionAsync("fold")<CR>', { silent = true, noremap = true })
 
 -- highlight the symbol and its references when holding the cursor.
 -- @url https://stackoverflow.com/questions/41416072/change-the-hold-time-of-the-cursor
