@@ -245,3 +245,9 @@ wk.register({
     },
   },
 })
+
+
+-- plugin: zen.nvim
+
+map('n', '<leader>zm', ':ZenMode<cr>')
+
