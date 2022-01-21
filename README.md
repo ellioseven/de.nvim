@@ -34,3 +34,6 @@ $ docker-compose build \
 
 __NOTE:__ Config at `$HOME/.opt/de.nvim/config` is mounted into `de` container.
 
+## Common Problems
+
+- Problems installing packages? Remove `config/nvim/plugin/packer_compiled.lua`
