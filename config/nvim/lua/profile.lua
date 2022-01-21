@@ -10,6 +10,9 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- disable line wraps.
+cmd ":set wrap!"
+
 cmd "set updatetime=300"
 
 -- use configured colours instead of cterm.
