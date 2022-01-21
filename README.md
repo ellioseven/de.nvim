@@ -23,15 +23,6 @@ $ cd <directory>
 $ de
 ```
 
-## Development
-
-```bash
-# build image.
-$ docker-compose build \
-  --build-arg USER_ID=501 \
-  --build-arg GROUP_ID=501
-```
-
 __NOTE:__ Config at `$HOME/.opt/de.nvim/config` is mounted into `de` container.
 
 ## Common Problems
