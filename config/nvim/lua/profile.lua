@@ -177,16 +177,14 @@ require('gitsigns').setup({
 
 -- plugin: coc.nvim
 
-map('n', '<leader>[g', '<Plug>(coc-diagnostic-prev)')
-map('n', '<leader>]g', '<Plug>(coc-diagnostic-next)')
-map('n', '<leader>gd', '<Plug>coc-definition')
-map('n', '<leader>gy', '<Plug>(coc-type-definition)')
-map('n', '<leader>gi', '<Plug>(coc-implementation)')
-map('n', '<leader>rn', '<Plug>(coc-rename)')
-map('n', '<leader>a', '<Plug>(coc-codeaction-selected)')
-map('n', '<leader>ac', '<Plug>(coc-codeaction)')
-map('n', '<leader>qf', '<Plug>(coc-fix-current)')
-map('n', 'K', ':call CocActionAsync("doHover")<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>dn', '<Plug>(coc-diagnostic-next)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dp', '<Plug>(coc-diagnostic-prev)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gd', '<Plug>(coc-definition)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gi', '<Plug>(coc-implementation)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gt', '<Plug>(coc-type-definition)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ca', '<Plug>(coc-codeaction-selected)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>do', ':call CocActionAsync("doHover")<CR>', { silent = true, noremap = true })
 
 -- highlight the symbol and its references when holding the cursor.
 -- @url https://stackoverflow.com/questions/41416072/change-the-hold-time-of-the-cursor
@@ -217,9 +215,8 @@ map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 
 require('telescope').load_extension('coc')
 
-map('n', '<leader>d', ':<C-u>Telescope coc diagnostics<cr>')
-map('n', '<leader>dd', ':<C-u>Telescope coc workspace_diagnostics<cr>')
-map('n', '<leader>r', ':<C-u>Telescope coc references<cr>')
+map('n', '<leader>di', ':<C-u>Telescope coc diagnostics<cr>')
+map('n', '<leader>re', ':<C-u>Telescope coc references<cr>')
 
 -- plugin: indent-blankline.nvim
 
