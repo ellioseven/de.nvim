@@ -25,6 +25,7 @@ $ de
 
 __NOTE:__ Config at `$HOME/.opt/de.nvim/config` is mounted into `de` container.
 
-## Common Problems
+## Docs
 
-- Problems installing packages? Remove `config/nvim/plugin/packer_compiled.lua`
+See the [README](https://github.com/ellioseven/de.nvim/wiki/README)
+
