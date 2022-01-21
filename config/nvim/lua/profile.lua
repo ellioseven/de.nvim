@@ -184,6 +184,7 @@ vim.api.nvim_set_keymap('n', '<leader>gi', '<Plug>(coc-implementation)', { silen
 vim.api.nvim_set_keymap('n', '<leader>gt', '<Plug>(coc-type-definition)', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ca', '<Plug>(coc-codeaction-selected)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ol', ':call CocActionAsync("showOutline")<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>do', ':call CocActionAsync("doHover")<CR>', { silent = true, noremap = true })
 
 -- highlight the symbol and its references when holding the cursor.

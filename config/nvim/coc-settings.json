@@ -1,4 +1,5 @@
 {
+  "outline.expandLevel": 0,
   "eslint.autoFixOnSave": true,
   "list.source.symbols.excludes": [
     "**/node_modules/**/*"
