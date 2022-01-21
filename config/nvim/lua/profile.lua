@@ -74,7 +74,7 @@ cmd "set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab"
 -- theme: tokyonight.nvim
 
 g.tokyonight_style = 'night'
-g.tokyonight_italic_functions = 1
+g.tokyonight_italic_functions = 0
 g.tokyonight_dark_float = 1
 g.tokyonight_transparent_sidebar = 1
 g.tokyonight_colors = {
