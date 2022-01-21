@@ -3,7 +3,7 @@
 set -u
 set -e
 
-docker-compose --project-directory=$HOME/.opt/de-web run \
+docker-compose --project-directory=$HOME/.opt/de.nvim run \
   --volume=$PWD:/srv \
   --rm \
     cli nvim
