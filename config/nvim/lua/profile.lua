@@ -94,8 +94,8 @@ require('lualine').setup({
     icons_enabled = false,
     theme = 'tokyonight',
     component_separators = {
-      left = '',
-      right = ''
+      left = '|',
+      right = '|'
     },
     section_separators = {
       left = '',
