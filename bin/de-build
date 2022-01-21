@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -u
+set -e
+
+_UID=$1
+_GID=$2
+
+docker-compose --project-directory=$HOME/.opt/de.nvim build \
+  --build-arg USER_ID=$1 \
+  --build-arg GROUP_ID=$2
+
