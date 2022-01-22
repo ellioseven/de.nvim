@@ -94,7 +94,7 @@ cmd "highlight ColorColumn ctermbg=0 guibg=#db4b4b"
 -- set telescope bg to match editor bg.
 cmd "highlight TelescopeNormal guibg=#1a1b26"
 cmd "highlight TelescopeBorder guibg=#1a1b26 guifg=#303145"
-cmd "highlight TelescopeSelection guibg=#1a1b25"
+cmd "highlight TelescopeSelection guibg=#1a1b26"
 
 -- plugin: lualine.nvim
 
@@ -250,8 +250,10 @@ map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 
 require('telescope').load_extension('coc')
 
-map('n', '<leader>di', ':<C-u>Telescope coc diagnostics<cr>')
-map('n', '<leader>re', ':<C-u>Telescope coc references<cr>')
+local tcc = 'lua require("telescope").load_extension("coc")'
+local tcpd = '{ prompt_title = "", results_title = "", preview_width = "" }'
+map('n', '<leader>di', '<cmd>' .. tcc .. '.diagnostics(' .. tcpd .. ')<cr>')
+map('n', '<leader>re', '<cmd>' .. tcc .. '.references(' .. tcpd .. ')<cr>')
 
 -- plugin: indent-blankline.nvim
 

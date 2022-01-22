@@ -40,7 +40,7 @@ return require('packer').startup(function(use)
     run = 'make'
   }
 
-  use 'fannheyward/telescope-coc.nvim'
+  use 'ellioseven/telescope-coc.nvim'
 
   use {
     'lewis6991/gitsigns.nvim',
