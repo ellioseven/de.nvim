@@ -84,15 +84,17 @@ g.tokyonight_italic_functions = 0
 g.tokyonight_italic_variables = 0
 g.tokyonight_dark_float = 1
 g.tokyonight_transparent_sidebar = 1
-g.tokyonight_colors = {
---  bg_float = '#1a1b26'
-}
 
 -- enable theme.
 cmd[[colorscheme tokyonight]]
 
 -- right margin background.
 cmd "highlight ColorColumn ctermbg=0 guibg=#db4b4b"
+
+-- set telescope bg to match editor bg.
+cmd "highlight TelescopeNormal guibg=#1a1b26"
+cmd "highlight TelescopeBorder guibg=#1a1b26 guifg=#303145"
+cmd "highlight TelescopeSelection guibg=#1a1b25"
 
 -- plugin: lualine.nvim
 
@@ -209,13 +211,28 @@ cmd "autocmd CursorHold * silent call CocActionAsync('highlight')"
 
 -- plugin: telescope.nvim
 
+local prompt_defaults = {
+  prompt_title = "",
+  results_title = "",
+  preview_title = ""
+}
+
 require('telescope').setup({
   defaults = {
     theme = "tokyonight",
+    selection_caret = "⇒ ",
+    prompt_prefix = "$ ",
     layout_config = {
-      preview_width = 80
+      preview_width = .6
     },
   },
+  pickers = {
+    find_files = prompt_defaults,
+    live_grep = prompt_defaults,
+    buffers = prompt_defaults,
+    diagnostics = prompt_defaults,
+    coc_diagnostics = prompt_defaults
+  }
 })
 
 -- plugin: telescope-fzf.nvim
@@ -255,6 +272,13 @@ wk.register({
 
 
 -- plugin: zen.nvim
+
+require('zen-mode').setup({
+  window = {
+    width = 80,
+    backdrop = 1
+  }
+})
 
 map('n', '<leader>zm', ':ZenMode<cr>')
 

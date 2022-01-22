@@ -21,17 +21,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({
-        window = {
-          width = 80,
-          backdrop = 1
-        }
-      })
-    end
-  }
+  use "folke/zen-mode.nvim"
 
   use {
     'neoclide/coc.nvim',
