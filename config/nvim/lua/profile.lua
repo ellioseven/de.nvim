@@ -252,7 +252,7 @@ map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 require('telescope').load_extension('coc')
 
 local tcc = 'lua require("telescope").load_extension("coc")'
-local tcpd = '{ prompt_title = "", results_title = "", preview_width = "" }'
+local tcpd = '{ prompt_title = "", results_title = "", preview_title = "" }'
 map('n', '<leader>di', '<cmd>' .. tcc .. '.diagnostics(' .. tcpd .. ')<cr>')
 map('n', '<leader>re', '<cmd>' .. tcc .. '.references(' .. tcpd .. ')<cr>')
 
