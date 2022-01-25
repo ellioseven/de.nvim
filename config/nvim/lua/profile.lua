@@ -204,6 +204,7 @@ vim.api.nvim_set_keymap('n', '<leader>ca', '<Plug>(coc-codeaction-selected)', { 
 vim.api.nvim_set_keymap('n', '<leader>ol', ':call CocActionAsync("showOutline")<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>do', ':call CocActionAsync("doHover")<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>fo', ':call CocActionAsync("fold")<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>li', ':CocCommand eslint.executeAutofix<CR>', { silent = true, noremap = true })
 
 -- highlight the symbol and its references when holding the cursor.
 -- @url https://stackoverflow.com/questions/41416072/change-the-hold-time-of-the-cursor
