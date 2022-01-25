@@ -236,6 +236,8 @@ require('telescope').setup({
   }
 })
 
+map('n', '<leader>fg', '<cmd>:lua require("telescope.builtin").git_status()<cr>')
+
 -- plugin: telescope-fzf.nvim
 
 require('telescope').load_extension('fzf')
