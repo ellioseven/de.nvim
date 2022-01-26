@@ -258,6 +258,11 @@ local tcpd = '{ prompt_title = "", results_title = "", preview_title = "" }'
 map('n', '<leader>di', '<cmd>' .. tcc .. '.diagnostics(' .. tcpd .. ')<cr>')
 map('n', '<leader>re', '<cmd>' .. tcc .. '.references(' .. tcpd .. ')<cr>')
 
+-- show line numbers on preview.
+-- NOTE: There is a known bug, see https://github.com/nvim-telescope/telescope.nvim/issues/1661
+-- @url https://github.com/nvim-telescope/telescope.nvim/issues/1186
+vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
+
 -- plugin: indent-blankline.nvim
 
 require('indent_blankline').setup()
