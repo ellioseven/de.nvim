@@ -201,6 +201,7 @@ map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>')
 map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>')
 map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
 map('n', '<leader>hd', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+cmd 'command! -nargs=* HD lua require"gitsigns".diffthis(<q-args>)<CR>'
 
 -- plugin: coc.nvim
 
