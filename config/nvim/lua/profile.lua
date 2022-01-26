@@ -192,6 +192,16 @@ require('gitsigns').setup({
   current_line_blame = true
 })
 
+map('n', '<leader>hf', '<cmd>Gitsigns next_hunk<CR>')
+map('n', '<leader>hb', '<cmd>Gitsigns prev_hunk<CR>')
+map('n', '<leader>hs', '<cmd>Gitsigns stage_hunk<CR>')
+map('n', '<leader>hr', '<cmd>Gitsigns reset_hunk<CR>')
+map('n', '<leader>hS', '<cmd>Gitsigns stage_buffer<CR>')
+map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>')
+map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>')
+map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
+map('n', '<leader>hd', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+
 -- plugin: coc.nvim
 
 vim.api.nvim_set_keymap('n', '<leader>dn', '<Plug>(coc-diagnostic-next)', { silent = true })
