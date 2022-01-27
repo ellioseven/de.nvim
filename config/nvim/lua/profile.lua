@@ -86,7 +86,7 @@ g.tokyonight_dark_float = 1
 g.tokyonight_transparent_sidebar = 1
 
 -- enable theme.
-cmd[[colorscheme tokyonight]]
+cmd "colorscheme tokyonight"
 
 -- right margin background.
 cmd "highlight ColorColumn ctermbg=0 guibg=#db4b4b"
