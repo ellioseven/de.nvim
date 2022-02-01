@@ -91,6 +91,9 @@ cmd "colorscheme tokyonight"
 -- right margin background.
 cmd "highlight ColorColumn ctermbg=0 guibg=#db4b4b"
 
+-- enable spellcheck.
+cmd ":set spell"
+
 -- set telescope bg to match editor bg.
 cmd "highlight TelescopeNormal guibg=#1a1b26"
 cmd "highlight TelescopeBorder guibg=#1a1b26 guifg=#303145"
