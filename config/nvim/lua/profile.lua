@@ -251,7 +251,7 @@ require('telescope').setup({
 })
 
 map('n', '<leader>mk', '<cmd>:lua require("telescope.builtin").marks(' .. tcpd .. ')<cr>')
-map('n', '<leader>gs', '<cmd>:lua require("telescope.builtin").git_status(' .. tcpd .. ')<cr>')
+map('n', '<leader>fgs', '<cmd>:lua require("telescope.builtin").git_status(' .. tcpd .. ')<cr>')
 
 -- plugin: telescope-fzf.nvim
 
