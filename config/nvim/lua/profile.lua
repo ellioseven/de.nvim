@@ -200,8 +200,6 @@ map('n', '<leader>hS', '<cmd>Gitsigns stage_buffer<CR>')
 map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>')
 map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>')
 map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
-map('n', '<leader>hd', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
-cmd 'command! -nargs=* HD lua require"gitsigns".diffthis(<q-args>)<CR>'
 
 -- plugin: coc.nvim
 
@@ -291,7 +289,6 @@ wk.register({
   },
 })
 
-
 -- plugin: zen.nvim
 
 require('zen-mode').setup({
@@ -302,4 +299,28 @@ require('zen-mode').setup({
 })
 
 map('n', '<leader>zm', ':ZenMode<cr>')
+
+-- plugin: diffview.nvim
+
+require('diffview').setup({
+  use_icons = false,
+  enhanced_diff_hl = true,
+  icons = {
+    folder_closed = "▹",
+    folder_open = "▿"
+  },
+  signs = {
+    fold_closed = "▹",
+    fold_open = "▿"
+  },
+  file_panel = {
+    width = 45
+  }
+})
+
+
+map('n', '<leader>dvc', ':DiffviewClose<cr>')
+map('n', '<leader>dvf', ':DiffviewToggleFiles<cr>')
+cmd 'command! -nargs=* DV lua require"diffview".open(<q-args>)<cr>'
+cmd 'command! -nargs=* DVH lua require"diffview".file_history(<q-args>)<cr>'
 
