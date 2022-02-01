@@ -224,6 +224,8 @@ cmd "autocmd CursorHold * silent call CocActionAsync('highlight')"
 
 -- plugin: telescope.nvim
 
+local tcpd = '{ prompt_title = "", results_title = "", preview_title = "" }'
+
 local prompt_defaults = {
   prompt_title = "",
   results_title = "",
@@ -248,7 +250,8 @@ require('telescope').setup({
   }
 })
 
-map('n', '<leader>fg', '<cmd>:lua require("telescope.builtin").git_status()<cr>')
+map('n', '<leader>mk', '<cmd>:lua require("telescope.builtin").marks(' .. tcpd .. ')<cr>')
+map('n', '<leader>gs', '<cmd>:lua require("telescope.builtin").git_status(' .. tcpd .. ')<cr>')
 
 -- plugin: telescope-fzf.nvim
 
@@ -266,7 +269,6 @@ map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 require('telescope').load_extension('coc')
 
 local tcc = 'lua require("telescope").load_extension("coc")'
-local tcpd = '{ prompt_title = "", results_title = "", preview_title = "" }'
 map('n', '<leader>di', '<cmd>' .. tcc .. '.diagnostics(' .. tcpd .. ')<cr>')
 map('n', '<leader>re', '<cmd>' .. tcc .. '.references(' .. tcpd .. ')<cr>')
 
