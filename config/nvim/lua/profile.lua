@@ -250,6 +250,7 @@ require('telescope').setup({
   }
 })
 
+map('n', '<leader>sp', '<cmd>:lua require("telescope.builtin").spell_suggest(' .. tcpd .. ')<cr>')
 map('n', '<leader>mk', '<cmd>:lua require("telescope.builtin").marks(' .. tcpd .. ')<cr>')
 map('n', '<leader>fgs', '<cmd>:lua require("telescope.builtin").git_status(' .. tcpd .. ')<cr>')
 
