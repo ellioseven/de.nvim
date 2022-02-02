@@ -81,6 +81,19 @@ cmd ":set signcolumn=yes"
 -- enable mouse mode.
 cmd ":set mouse=a"
 
+-- map ESC to exit terminal mode.
+-- @url https://neovim.io/doc/user/nvim_terminal_emulator.html
+map('t', '<Esc>', '<C-\\><C-n>')
+
+-- set shell to fish.
+cmd ":set shell=/usr/bin/fish"
+
+cmd ":set shellcmdflag=--login"
+
+-- disable line numbers in terminal mode.
+-- @url https://stackoverflow.com/questions/63906439/how-to-disable-line-numbers-in-neovim-terminal
+cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
+
 -- theme: tokyonight.nvim
 
 g.tokyonight_style = 'night'

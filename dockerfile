@@ -95,6 +95,9 @@ RUN if [ ! -f package.json ] ; then echo '{"dependencies": {}}' > package.json ;
       --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 WORKDIR "$HOME"
 
+# set config path.
+ENV XDG_CONFIG_HOME "$HOME/.config"
+
 # configure: fish
 ADD config/fish "$HOME/.config/fish"
 

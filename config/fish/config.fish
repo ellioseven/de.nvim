@@ -1,3 +1,12 @@
+function fish_prompt
+  set_color magenta
+  printf (id -u)": "
+  set_color normal
+end
+
+function fish_greeting
+end
+
 # TokyoNight Color Palette
 set -l foreground c0caf5
 set -l selection 33467C
