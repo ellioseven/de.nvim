@@ -88,8 +88,6 @@ map('t', '<Esc>', '<C-\\><C-n>')
 -- set shell to fish.
 cmd ":set shell=/usr/bin/fish"
 
-cmd ":set shellcmdflag=--login"
-
 -- disable line numbers in terminal mode.
 -- @url https://stackoverflow.com/questions/63906439/how-to-disable-line-numbers-in-neovim-terminal
 cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
@@ -352,4 +350,10 @@ map('n', '<leader>dvc', ':DiffviewClose<cr>')
 map('n', '<leader>dvf', ':DiffviewToggleFiles<cr>')
 cmd 'command! -nargs=* DV lua require"diffview".open(<q-args>)<cr>'
 cmd 'command! -nargs=* DVH lua require"diffview".file_history(<q-args>)<cr>'
+
+-- plugin: autopairs.nvim
+
+require('nvim-autopairs').setup{{
+  map_cr = true
+}}
 
