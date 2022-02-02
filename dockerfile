@@ -91,6 +91,7 @@ RUN if [ ! -f package.json ] ; then echo '{"dependencies": {}}' > package.json ;
     coc-eslint \
     coc-prettier \
     coc-tsserver \
+    coc-pairs \
     coc-json \
       --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 WORKDIR "$HOME"
