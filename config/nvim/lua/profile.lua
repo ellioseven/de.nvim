@@ -279,6 +279,7 @@ require('telescope').load_extension('coc')
 local tcc = 'lua require("telescope").load_extension("coc")'
 map('n', '<leader>di', '<cmd>' .. tcc .. '.diagnostics(' .. tcpd .. ')<cr>')
 map('n', '<leader>re', '<cmd>' .. tcc .. '.references(' .. tcpd .. ')<cr>')
+map('n', '<leader>sy', '<cmd>' .. tcc .. '.workspace_symbols(' .. tcpd .. ')<cr>')
 
 -- show line numbers on preview.
 -- NOTE: There is a known bug, see https://github.com/nvim-telescope/telescope.nvim/issues/1661
