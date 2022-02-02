@@ -3,6 +3,7 @@
   "codeLens.enable": true,
   "codeLens.position": "eol",
   "diagnostic.refreshOnInsertMode": true,
+  "coc.preferences.jumpCommand": "tabe",
   "list.source.symbols.excludes": [
     "**/node_modules/**/*"
   ]
