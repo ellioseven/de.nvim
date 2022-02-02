@@ -74,6 +74,10 @@ map('n', '<leader>c', ':execute "set colorcolumn=" . (&colorcolumn == "" ? "80" 
 -- 1 tab == 2 spaces.
 cmd "set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab"
 
+
+-- enable mouse mode.
+cmd ":set mouse=a"
+
 -- theme: tokyonight.nvim
 
 g.tokyonight_style = 'night'
