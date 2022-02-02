@@ -1,6 +1,7 @@
 {
   "outline.expandLevel": 0,
   "codeLens.enable": true,
+  "codeLens.position": "eol",
   "diagnostic.refreshOnInsertMode": true,
   "list.source.symbols.excludes": [
     "**/node_modules/**/*"
